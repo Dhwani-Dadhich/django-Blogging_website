@@ -142,13 +142,15 @@ STATIC_URL = '/static/'
 
 
 ACCOUNT_ACTIVATION_DAYS=3       #mail will be active for 3 days
-
-EMAIL_HOST= 'smtp.gmail.com' #simple mail transfer protocol server            #when someone registers then it sends email to that person
-EMAIL_PORT= 587
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS= True
 
+EMAIL_HOST= 'smtp.gmail.com' #simple mail transfer protocol server            #when someone registers then it sends email to that person
 EMAIL_HOST_USER= 'priyaaadoshi99999@gmail.com'
 EMAIL_HOST_PASSWORD= 'dhruvildadhich'
+EMAIL_PORT= 587
+
+
 
 LOGIN_REDIRECT_URL = "/blog/home/"
 
