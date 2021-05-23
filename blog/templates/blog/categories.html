@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+</head>
+<body>
+<div class="container-fluid">
+{% if category_blog %}
+<h1> {{cats}} </h1><hr>
+{% for blog in category_blog %}
+<div class="row" style="color: black;">
+<div class="col-md-3"></div>
+
+<div class="col-md-8 col-sm-12 col-xs-12">
+
+
+<div class="blog-post">
+<div class="blog-post_img">
+<img src="/media/{{blog.pic}}" alt="">
+</div>
+<div class="blog-post_info">
+<div class="blog-post_date">
+<span>{{blog.cr_date}}</span>
+</div>
+<h1 class="blog-post_title">{{blog.subject}}</h1>
+<p class="blog-post_text">
+{{blog.content|safe|slice:":5"}}
+</p>
+<a href="../blog/detail/{{blog.id}}/{{blog.slug}}" class="blog-post_cta">Read more</a>
+</div>
+</div>
+<br><br>
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="col-md-3"></div>
+</div>
+
+ {% endfor %}
+{% else %}
+<h1>Sorry this page doesn't exist.</h1>
+{% endif %}
+</div>
+</body>
+</html>
+{% endblock %}
+
+
+
+<!-- <div class="card mb-3" style="max-width: 540px;">
+  <div class="row no-gutters">
+  <div class="col-md-6">
+      <img src="/media/{{blog.pic}}" class="card-img" alt="..." style="height:200px;width:200px;">
+    </div>
+    <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title"><strong><a href="../blog/detail/{{blog.id}}/{{blog.slug}}">{{blog.subject}}</a></strong></h5>
+        <p class="card-text">{{blog.content|safe|slice:":8"}}</p>
+        <p class="card-text"><small class="text-muted">{{blog.cr_date}}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+ -->

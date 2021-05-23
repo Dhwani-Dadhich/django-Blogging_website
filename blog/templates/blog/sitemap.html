@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<h1 style="color: black;"> SITEMAP</h1>
+</head>
+<body style="color: black;">
+
+{% for n1 in cat %}
+{{n1.subject}}
+{% endfor %}
+
+
+{% for n1 in category_list %}
+{{n1.category_name}}
+{% endfor %}
+
+</body>
+</html>
+{% endblock %}

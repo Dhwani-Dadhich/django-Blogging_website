@@ -1,0 +1,345 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<meta charset="ISO-8859-1">
+<title>Techfluenzer</title>
+<link rel="stylesheet" href="C:\Users\aayushi\Desktop\vs code\techfluenzer\blog\static\glide-3.4.1\dist\css\glide.core.min.css">
+<link rel="stylesheet" href="C:\Users\aayushi\Desktop\vs code\techfluenzer\blog\static\glide-3.4.1dist\css\glide.theme.min.css">
+<link rel="stylesheet" href="../../static/glide.theme.css">
+<link rel="stylesheet" href="../../static/glide.core.css">
+
+</head>
+
+<body>
+
+
+
+
+
+<div class="row ">
+<div class="col-md-12">
+  
+<div id="carouselExampleCaptions" class="carousel slide carousel-fade w-100 img-fluid" data-ride="carousel">
+    
+  <ol class="carousel-indicators">
+  
+ 
+  
+    <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+    <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-item active dark one">
+      <img src="/media/{{n1.cat_pic}}" class="d-block w-100 h-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ n1.category_name}}</h5>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </div>
+    
+  <div class="carousel-inner">
+{% for n1 in cat %}
+ 
+    <div class="carousel-item dark one">
+      <img src="/media/{{n1.cat_pic}}" class="d-block w-100 h-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{ n1.category_name}}</h5>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </div>
+       {% endfor %}
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  
+  </div>
+
+</div>
+<br> <br> <br> <br> <br>
+
+
+
+
+
+
+
+
+
+
+
+{% load crispy_forms_tags %}
+
+<div>
+	<div style="color:white;">
+	
+		<div >
+
+			
+			{% if messages %}
+				{% for message in messages %}
+				
+				<div {% if message.tags %} class="alert alert-dismissible alert-light fade show {{message.tags}}"  {% endif %} role="alert">
+  			
+  				 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    				<span aria-hidden="true"></span>
+  					</button>
+  					
+  					
+  					{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+				<div  class="alert alert-dismissible fade show success" role="alert" >
+		
+				
+  					{{ message}} <i class="fas fa-check-circle success rounded-circle" ></i></div>
+  					{% endif %}
+  					
+  				{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+				<div  class="alert alert-dismissible fade show warning " role="alert" >
+				
+				
+  					{{ message }} <i class="fas fa-exclamation-circle fail rounded-circle" ></i>
+  					</div>
+  				{% endif %}
+  					
+  					</div>
+  					{% endfor %}
+  				
+		</div>
+
+				{% else %}
+				<div class="container-fluid img-fluid">
+				<div class="subscribeimg ">
+	<div class="blackbg">
+	<!-- <div class="blackbg">
+	<img src="/static/images/subscribe1.jpg" class=" img-fluid w-100 h-100" style="position: absolute;left:0;"></p>
+		</div> -->
+	
+	
+				<div class="row text-justify formrow container" style="padding: 10px;">
+				<div class="col-md-1"></div>
+				<div class="col-md-6">
+				<h2> LEARN, BUILD AND GROW YOUR ONLINE BRAND WITH US</h2>
+				<p> Whether you are a Blogger, YouTuber, Online Seller or you have a Small Business, we have got everything covered for you.</p>
+				<p> You can adopt the tried and tested techniques, discover lots of tools that can ease your work for building online presence.</p>
+				<p> Join our weekly newsletter to stay tuned with latest blogs!</p>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-3 form">
+			<form  method="POST">
+			
+			
+				{% csrf_token %}
+				<div class="input-group" >
+				<div  >
+				<p class="form">{% crispy form %}</p>
+			</br>
+				<span class="input-group-btn">
+				
+					<button class="btn btn-light sub " >Subscribe</button>
+				</span>
+				</div>
+			</form>
+			</div>
+			<div class="col-md-1"></div>
+			</div>
+				</div> 
+		</div>
+			</p>
+			{% endif %}
+		
+		
+		</div>
+		</div>
+		</div>
+		
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+
+<div class="glide">
+  <div class="glide__track" data-glide-el="track">
+    <div class="glide__slides">
+    {% for blog in recent %}
+      <div class="glide__slide">
+      <div class="glide-card">
+<div class="glide-imgbx">
+<img src="/media/{{blog.pic}}">
+</div>
+<div class="glide-content">
+<h4><a href="../blog/detail/{{blog.id}}/{{blog.slug}}">{{blog.subject}}</a></h4>
+<span>{{blog.cr_date}}</span>
+<a href="../blog/detail/{{blog.id}}/{{blog.slug}}" class="blog-post_cta">Read more</a>
+</div>
+</div>
+
+      
+      
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="glide__arrows" data-glide-el="controls">
+    <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+  </div>
+</div>
+</div>
+<!-- <div class="card ml-5 ml-5" style="width: 16rem; margin-bottom:50px; height:25rem;">
+ <img src="/media/{{blog.pic}}" class="card-img-top img-fluid h-50" alt="..." >
+  # <img src="/media/{{blog.cat_pic}}" class="card-img-top img-fluid " alt="..." style="height:40px;width:40px;position: absolute;" > 
+  <div class="card-body" style="width: 16rem; height: 5rem;">
+ <a href="../blog/detail/{{blog.id}}/{{blog.slug}}">   <h5 class="card-title"><strong>{{blog.subject}}</strong></h5></a>
+  
+    <h6 class="card-subtitle mb-2 text-muted">{{blog.cr_date}}</h6>
+  </div>
+</div>
+	
+ -->
+
+
+
+
+<div class="caticons container">
+
+{% for n1 in cat %}
+<li>
+
+
+
+<a href="../category/{{n1.category_name}}"><br></li></a>
+{% endfor %}
+
+
+{% for n1 in cat|slice:":1" %}
+<a href="../category/{{n1.cat}}" style="margin-bottom: 5px;"><i class="fab fa-stripe-s sales rounded-circle"></i></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="../category/{{n1.category_name}}" style="margin-bottom: 5px;"> <i class="fas fa-ad marketing rounded-circle"></i></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="../category/{{n1.category_name}}" style="margin-bottom: 5px;"><i class="fas fa-rocket startup rounded-circle"></i></a> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="../category/{{n1.category_name}}" style="margin-bottom: 5px;"><i class="fas fa-laptop-code technology rounded-circle"></i></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="../category/{{n1.category_name}}" style="margin-bottom: 5px;"><i class="fas fa-book-reader trending rounded-circle"></i></a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+<a href="../category/{{n1.category_name}}" style="margin-bottom: 5px;"><i class="fas fa-lightbulb tips rounded-circle"></i></a><br>
+
+{% endfor %}
+<div class="caticondetail">
+<p> learn Sales</p>
+<p>do marketing</p>
+<p>Start business</p>
+<p>Earn online</p>
+<p>Sales</p>
+<p>Sales</p>
+
+</div>
+
+</div>
+
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+      
+
+      
+
+<script src="/static/glider/glider.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<script src="C:\Users\aayushi\Desktop\vs code\techfluenzer\blog\static\glide-3.4.1\dist\glide.min.js"></script>
+<script src="https://unpkg.com/@glidejs/glide"></script>
+<script>
+const config = {
+		type: 'carousel',
+		perView: 4,
+		gap: 40,
+		breakpoints:{
+			1400:{
+				  perView: 3
+			  },
+			  1024:{
+				  perView: 2
+			  },
+			  600:{
+				  perView: 1
+			  }
+		  }
+
+		
+};
+
+  new Glide('.glide', config).mount()
+</script>
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+      
+<div align="center">
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-format="fluid"
+     data-ad-layout-key="-dr-3x+gi+eo-1vp"
+     data-ad-client="ca-pub-1411018224824070"
+     data-ad-slot="8397703929"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+	
+
+</div>
+
+
+
+
+
+
+  </body>
+</html>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

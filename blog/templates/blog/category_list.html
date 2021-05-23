@@ -1,0 +1,49 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+
+
+{% for n1 in cat %}
+<li>
+
+
+
+<a href="../{{n1.category_name}}">{{n1.category_name}}<br></li></a>
+{% endfor %}
+<br>
+<!-- {% if category_blog %}
+<h1> {{cats}} </h1><hr>
+{% for blog in category_blog %}
+ <a href="../../../blog/detail/{{blog.id}}">{{blog.subject}}</a>
+ -{{blog.category|slugify}}
+ -{{blog.cr_date}}n1
+ 
+ {{blog.content|safe|slice:":8"}}
+ {% endfor %}
+{% else %}
+<h1>Sorry this page doesn't exist.</h1>
+{% endif %}
+	 -->
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+{% load crispy_forms_tags %}
+
+
+<body>
+<div class="icons">
+
+		<a href="mailto:david.hasselhoff@example.com?subject=http://127.0.0.1:8000/blog/blog/detail/{{post.id}}/{{post.slug}}" class="gmaill">g-mail<i class="fas fa-envelope" ></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=http://127.0.0.1:8000/blog/blog/detail/{{post.id}}/{{post.slug}}" class="fbb">facebook<i class="fab fa-facebook" ></i></a>
+        <a href="https://twitter.com/share?url=http://127.0.0.1:8000/blog/blog/detail/{{post.id}}/{{post.slug}}" class="twitt">twitter<i class="fab fa-twitter" ></i></a>
+        <a href="https://pinterest.com/pin/create/bookmarklet?media=http://127.0.0.1:8000/blog/blog/detail/{{post.id}}/{{post.slug}}" class=" pinterestt">pinterest<i class="fab fa-pinterest" ></i></a>
+        <a href="https://linkedin.com/shareArticle?url=http://127.0.0.1:8000/blog/blog/detail/{{post.id}}/{{post.slug}}" class="linkedinn">linked in<i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/text?u=http://127.0.0.1:8000/blog/blog/detail/{{post.id}}/{{post.slug}}" class="instaa">instagram<i class="fab fa-instagram" ></i></a>
+      
+
+</div>
+
+
+
+
+
+
+
+
+<div class="row" style="color: black;">
+<div class="col-md-3 ">
+</div>
+<div class="col-md-6 bg1">
+<div class="hey p-5">
+<bold><h1>{{post.subject}}</h1></bold><br>
+<div class="mr-auto">
+<small>{{post.cr_date}} | by Techfluenzer</small>
+</div>
+
+</div>
+<div class="p-5">
+<p> {{post.content|safe}}</p><br>
+<a href="/blog/blog/list/" class="btn btn-dark">Back</a>
+
+
+
+<div class="main-comment-section">
+{% include 'blog/comment.html' %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- comments 
+<h2> Leave a comment</h2>
+
+<form method="post">
+	{{ comment_form.as_p }}
+	{% csrf_token %}
+	<button type="submit"> Publish comment</button>
+</form>
+-->
+<!--  comment list 
+
+{% for comment in comments %}
+
+<p> {{ comment.name }} | {{comment.date_added}}</p>
+{{ comment.comment | linebreaks }}
+
+{% for reply in comment.replies.all %}
+<p>{{reply.name}} | {{reply.email}}</p>
+{{reply.comment | linebreaks }}
+
+{% endfor %}
+
+<p> Reply </p>
+<form method="post">
+	{{ comment_form.as_p }}
+	{% csrf_token %}
+	<input type="hidden" name="parent_id" value="{{comment.id}}">
+	<button type="submit"> Reply</button>
+</form>
+
+{% empty %}
+<h4> No comments yet...</h4>
+
+{% endfor %}
+
+-->
+
+
+</div>
+</div>
+	
+<div class="col-md-2">
+<br> <br> <br>
+<h6>RECENT POSTS</h6>
+{% for n1 in recent|slice:":5" %}
+<li>
+<a href="../../../blog/detail/{{n1.id}}/{{n1.slug}}">{{n1.subject}}</a>
+</li>
+{% endfor %}
+
+<br><br> <br>
+
+<h6>CATEGORIES</h6>
+{% for n1 in cat %}
+<li>
+<a href="../../../{{n1.category_name}}">{{n1.category_name}}<br></li></a>
+{% endfor %}
+<br>
+
+
+
+
+</div>
+
+	</div>
+	
+	
+	<div class="jumbotron jumbotron-fluid">
+<div class="w-100" style="width:100%; padding-top: 70px;">
+
+<div class="w-100" style="padding-left: 20px;">
+<div class="container-fluid" style="color: black;">
+	<div class="row" style="color:black;padding-left: 165px;">
+{% for blog in recent|slice:":8" %}
+
+
+
+<div class="card">
+<div class="imgbx">
+<img src="/media/{{blog.pic}}">
+</div>
+<div class="content">
+<h4><a href="../blog/detail/{{blog.id}}/{{blog.slug}}">{{blog.subject}}</a></h4>
+<span>{{blog.cr_date}}</span>
+<a href="../blog/detail/{{blog.id}}/{{blog.slug}}" class="blog-post_cta">Read more</a>
+</div>
+</div>
+
+
+
+
+
+	{% endfor %}
+	</div>
+</div>	
+</div>
+</div>
+	</div>
+	</div>
+	
+	
+	
+	
+<script type="text/javascript">
+$(document).on('submit', '.comment-form', function(event) {
+	event.preventDefault();
+	console.log($(this).serialize());
+	$.ajax({
+		type: 'POST',
+		url: $(this).attr('action'),
+		data: $(this).serialize(),
+		dataType: 'json',
+		success: function(response){
+			$('.main.comment-section').html(response['form']);
+			$('textarea').val('');
+			$('.reply-btn').click(function() {
+				$(this).parent().parent().next('.replied-comments').fadeToggle();
+				$('textarea'), val('');
+			});
+		},
+		error: function(rs, e) {
+			console.log(rs.responseText);
+		},
+	});
+});
+</script>	
+	
+  
+	<!-- <div class="card mr-5" style="width: 16rem; margin-bottom:50px;height: 25rem;">
+ <img src="/media/{{blog.pic}}" class="card-img-top img-fluid h-50" alt="..." >
+  # <img src="/media/{{blog.cat_pic}}" class="card-img-top img-fluid " alt="..." style="height:40px;width:40px;position: absolute;" > 
+  <div class="card-body" style="width: 16rem; height: 5rem;">
+ <a href="../../../blog/detail/{{blog.id}}/{{blog.slug}}">   <h5 class="card-title"><strong>{{blog.subject}}</strong></h5></a>
+   
+    <h6 class="card-subtitle mb-2 text-muted">{{blog.cr_date}}</h6>
+  </div>
+</div> -->
+	
+	
+	
+	
+	
+	
+	
+<script type="text/javascript">
+$(document).on('submit', '.reply-form', function(event) {
+	event.preventDefault();
+	console.log($(this).serialize());
+	$.ajax({
+		type: 'POST',
+		url: $(this).attr('action'),
+		data: $(this).serialize(),
+		dataType: 'json',
+		success: function(response){
+			$('.main.comment-section').html(response['form']);
+			$('textarea').val('');
+			$('.reply-btn').click(function() {
+				$(this).parent().parent().next('.replied-comments').fadeToggle();
+				$('textarea'), val('');
+			});
+		},
+		error: function(rs, e) {
+			console.log(rs.responseText);
+		},
+	});
+});
+</script>	
+	
+  
+	
+</body>
+</html>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

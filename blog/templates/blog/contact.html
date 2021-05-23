@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+{% load crispy_forms_tags %}			
+		
+<form  method="POST">
+			<div class="container" style="color: black;">
+			
+				{% csrf_token %}
+				<div class="input-group contact" >
+				<div style="text-align: center;" >
+				<p style="text-align: center;">{% crispy form %}</p>
+			</br>
+				<span class="input-group-btn ">
+				
+					<button class="btn btn-dark" type="submit">Get in touch</button>
+				</span>
+				</div>
+				</div>
+			</form>
+	</div>
+	
+	
+	<br> <br>
+	
+	
+	
+	
+</body>
+</html>
+{% endblock %}

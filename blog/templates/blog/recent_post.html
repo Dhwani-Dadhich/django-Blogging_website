@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body style="color:white;">
+
+{% for n1 in recent|slice:":5" %}
+<li>
+<a href="../blog/detail/{{n1.slug}}">{{n1.subject}}</a>
+</li>
+{% endfor %}
+
+</body>
+</html>

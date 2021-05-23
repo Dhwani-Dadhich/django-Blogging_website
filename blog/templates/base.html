@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="HandheldFriendly" content="true">
+
+{% load crispy_forms_tags %}
+
+
+
+
+    <!-- Bootstrap CSS -->
+
+<link href="/static/fontawesome/css/all.css" rel="stylesheet">
+<link href="/static/fontawesome/js/all.js" rel="stylesheet">
+<link href="/static/fontawesome/webfonts" rel="stylesheet">
+<link href="/static/glider/glider.min.css" rel="stylesheet">
+<link href="/static/style.css"  rel="stylesheet"/>
+<link href="/static/bootstrap/bootstrap.css/bootstrap.min.css" rel="stylesheet">
+<script src="/static/bootstrap/bootstrap.js/bootstrap.min.js"></script>
+
+ 
+   <title>Hello, world!</title>
+     
+  </head>
+  <body>
+<div class="brrr">
+
+
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar fixed-top" style="background-color: white;color: black;">
+
+
+<a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Techfluenzer"><img src="/static/images/techfluenzer logo.jpg" class="rounded-circle img" height="36" width= "36"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" class="d-block" focusable="false"><title>Techfluenzer</title><path fill="currentColor" d="M510 8a94.3 94.3 0 0 1 94 94v408a94.3 94.3 0 0 1-94 94H102a94.3 94.3 0 0 1-94-94V102a94.3 94.3 0 0 1 94-94h408m0-8H102C45.9 0 0 45.9 0 102v408c0 56.1 45.9 102 102 102h408c56.1 0 102-45.9 102-102V102C612 45.9 566.1 0 510 0z"></path><path fill="currentColor" d="M196.77 471.5V154.43h124.15c54.27 0 91 31.64 91 79.1 0 33-24.17 63.72-54.71 69.21v1.76c43.07 5.49 70.75 35.82 70.75 78 0 55.81-40 89-107.45 89zm39.55-180.4h63.28c46.8 0 72.29-18.68 72.29-53 0-31.42-21.53-48.78-60-48.78h-75.57zm78.22 145.46c47.68 0 72.73-19.34 72.73-56s-25.93-55.37-76.46-55.37h-74.49v111.4z"></path></svg></a>
+
+   <div class="navbar-nav-scroll">
+    <ul class="navbar-nav bd-navbar-nav flex-row">
+      
+      <li class="nav-item">
+        <a class="nav-link"  style="color: black;" href="../blog/list" onclick="ga('send', 'event', 'Navbar', 'Community links');">HOME</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link active"  style="color: black;" href="../blog/about_us" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Docs');">ABOUT US</a>
+      </li>
+      
+      
+    <li class="nav-item dropdown">
+      <a class="nav-item nav-link dropdown-toggle mr-md-2"  style="color: black;" href="#" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        BLOGS
+      </a>
+      <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="bd-versions">
+      {% for n1 in cat %}
+          <a class="dropdown-item" href="../{{n1.category_name}}" style="color:black">{{n1.category_name}}</a>
+          {% endfor %}
+        
+      
+       
+      
+    </li>
+    
+    
+      
+      
+      
+      <li class="nav-item">
+        <a class="nav-link "  style="color: black;" href="../blog/contact_us">CONTACT US</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  style="color: black;" href="https://icons.getbootstrap.com/" onclick="ga('send', 'event', 'Navbar', 'Community links', 'Icons');" target="_blank" rel="noopener">SITEMAP</a>
+      </li>
+      
+    </ul>
+    
+  </div>
+
+<div class="iconss">
+<ul class="navbar-nav ml-md-auto" style="display: flex;flex-direction: row;">
+
+    <li class="nav-item">
+      <a class="nav-link pl-2 pr-1 mx-1 py-3 my-n2" href="https://follow.it/techfluenzer?action=followPub" target="_blank" rel="noopener" aria-label="Gmail"><i class="fas fa-envelope rounded-circle gmail" ></i></a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link pl-2 pr-1 mx-1 py-3 my-n2" href="https://www.facebook.com/techfluenzer/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook rounded-circle fb" ></i></a>
+    </li>
+    
+    
+    <li class="nav-item">
+      <a class="nav-link pl-2 pr-1 mx-1 py-3 my-n2" href="https://twitter.com/techfluenzer" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter rounded-circle twit" ></i></a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link pl-2 pr-1 mx-1 py-3 my-n2" href="https://in.pinterest.com/techfluenzer/" target="_blank" rel="noopener" aria-label="Pinterest"><i class="fab fa-pinterest  rounded-circle pinterest" ></i></a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link pl-2 pr-1 mx-1 py-3 my-n2" href="https://www.linkedin.com/company/techietips/" target="_blank" rel="noopener" aria-label="Linkedin"><i class="fab fa-linkedin-in rounded-circle linkedin"></i></a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-link pl-2 pr-1 mx-1 py-3 my-n2" href="https://www.instagram.com/techfluenzer/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram rounded-circle insta" ></i></a>
+    </li>
+    
+    
+    
+  </ul>
+</div>
+  
+ <!-- <div class="iconalign ml-auto" style="display:flex;margin-top:40;">
+        
+     
+        <br><a href=""></a>&nbsp&nbsp
+        <a href=""></a>&nbsp&nbsp
+        <a href=""></a>&nbsp&nbsp
+        <a href=""></a>&nbsp&nbsp
+        <a href=""></a>&nbsp&nbsp
+        <a href=""></a>
+      
+    </div> -->
+</header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+ <nav class=" navbar navbar-expand-sm navbar-light" style="z-index: 5;height:40px;color:black;margin-bottom: 0px; margin-top:0px;margin-right:0;">
+<a class="navbar-brand"><img src="/static/images/techfluenzer logo.jpg" class="rounded-circle img"></a>
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="row">
+ <div class="tech">
+ TECHFLUENZER
+ </div>
+
+<small class="techie">ACQUIRE KNOWLEDGE FROM THE CRADLE TO THE GRAVE</small>
+
+  </div>
+ <div class="iconalign ml-auto" style="display:flex;margin-top:40;">
+        
+     
+        <br><a href="https://follow.it/techfluenzer?action=followPub"><i class="fas fa-envelope rounded-circle gmail" ></i></a>&nbsp&nbsp
+        <a href="https://www.facebook.com/techfluenzer/"><i class="fab fa-facebook rounded-circle fb" ></i></a>&nbsp&nbsp
+        <a href="https://twitter.com/techfluenzer"><i class="fab fa-twitter rounded-circle twit" ></i></a>&nbsp&nbsp
+        <a href="https://in.pinterest.com/techfluenzer/"><i class="fab fa-pinterest  rounded-circle pinterest" ></i></a>&nbsp&nbsp
+        <a href="https://www.linkedin.com/company/techietips/"><i class="fab fa-linkedin-in rounded-circle linkedin"></i></a>&nbsp&nbsp
+        <a href="https://www.instagram.com/techfluenzer/"><i class="fab fa-instagram rounded-circle insta" ></i></a>
+      
+    </div>
+ 
+    <ul class="navbar-nav ml-auto" style="color:white;display: inline;">
+      <li class="nav-item active" style="">
+        <a class="nav-link ml-auto" href="../blog/list">HOME <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../blog/about_us">ABOUT US</a>
+      </li>
+      
+      
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          BLOGS
+        </a>
+        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for n1 in cat %}
+          <a class="dropdown-item" href="../{{n1.category_name}}" style="color:black">{{n1.category_name}}</a>
+          {% endfor %}
+          </div>
+          </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="../blog/contact_us">CONTACT US</a>
+      </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="#">SITEMAP</a>
+      </li>
+     
+      
+      
+      <!-- 
+      <li class="nav-item active">
+        <a class="nav-link" href="../blog/privacy">PRIVACY POLICY</a>
+      </li>
+      
+      
+      	
+        <li class="nav-item active">
+        <a class="nav-link" href="../../../blog/blog/create">Add Blog</a>
+      </li>
+      <a class="nav-link" href="/admin">Admin</a>
+      
+      </ul>
+  </div>
+</nav>
+
+
+ -->
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+<main style='z-index:67; margin-top:100px;'>
+
+
+{% block content %}
+{% endblock %}
+
+
+<footer>
+<div class="footer-top">
+<div class="container ">
+<div class="row" style="color:black;">
+
+<div class="col-md-3 col-sm-12 col-xs-12 mr-5 segment-one sm-mb-30">
+<h2>Recent Posts</h2>
+<div class="s1">{% include 'blog/recent_post.html' %}</div>
+</div>
+
+<div class="col-md-2 col-sm-12 col-xs-12 mr-5 segment-two sm-mb-30">
+<h2>Categories</h2>
+<div class="s2">
+{% for n1 in cat %}
+<li>
+<a href="../{{n1.category_name}}">{{n1.category_name}}<br></li></a>
+{% endfor %}
+</div>
+</div>
+
+<div class="col-md-2 col-sm-12 col-xs-12 mr-5 segment-three sm-mb-30">
+<h2>Bio</h2>
+<li>About </li>
+<li> Contact us</li>
+<li>Privacy Policy</li>
+<li> Sitemap</li>
+</div>
+
+<div class="col-md-3 col-sm-12 col-xs-12 segment-four sm-mb-30">
+<h2>Subscribe</h2>
+<div >
+
+
+
+
+			{% if messages %}
+				{% for message in messages %}
+				
+				<div {% if message.tags %} class="alert alert-dismissible alert-light fade show {{message.tags}}"  {% endif %} role="alert">
+  				 
+  					
+  					{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+				<div  class="alert alert-dismissible fade show " role="alert">
+  					{{ message }} <i class="fas fa-check-circle"></i></div>
+  					{% endif %}
+  					
+  				{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+				<div  class="alert alert-dismissible fade show " role="alert">
+  					{{ message }} <i class="fas fa-exclamation-circle"></i></div>
+  					{% endif %}
+  					
+  					
+  					
+  					
+  					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    				<span aria-hidden="true"></span>
+  					</button>
+  				</div>
+		</div>
+				{% endfor %}
+				{% else %}
+				
+			<form  method="POST">
+			
+			
+				{% csrf_token %}
+				<div class="input-group" required >
+				<div style="text-align: center;" >
+				<div class="subscribe" style="text-align: center;font-size: 15px;">{% crispy form %}</div>
+			</br>
+				<span class="input-group-btn ">
+				
+					<button class="btn btn-light textbox" >Subscribe</button>
+				</span>
+				</div>
+			</form>
+			{% endif %}
+		</div>
+		
+		
+		
+		
+		</div>
+		
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+        
+     <div class=" footer-icons sm-mb-30">
+     
+             <br><a href="https://follow.it/techfluenzer?action=followPub"><i class="fas fa-envelope rounded-circle gmails" ></i></a>
+        <a href="https://www.facebook.com/techfluenzer/"><i class="fab fa-facebook rounded-circle fbs" ></i></a>
+        <a href="https://twitter.com/techfluenzer"><i class="fab fa-twitter rounded-circle twits" ></i></a>
+        <a href="https://in.pinterest.com/techfluenzer/"><i class="fab fa-pinterest  rounded-circle pinterests" ></i></a>
+        <a href="https://www.linkedin.com/company/techietips/"><i class="fab fa-linkedin-in rounded-circle linkedins"></i></a>
+        <a href="https://www.instagram.com/techfluenzer/"><i class="fab fa-instagram rounded-circle instas" ></i></a>
+      </div>
+
+<p class="footer-bottom-text sm-mb-30"> All Rights reserved by @techfluenzer.com</p>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign Up for latest updates</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+       
+       
+       
+       
+<div>
+	<div class="row">
+		<div class="col-lg-6 col-lg-offset-3">
+			<h3 class="text-center">Subscribe here</h3>
+			{% if messages %}
+				{% for message in messages %}
+				
+				<div {% if message.tags %} class="alert alert-dismissible alert-light fade show {{message.tags}}"  {% endif %} role="alert">
+  				 
+  					
+  					{% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+				<div  class="alert alert-dismissible fade show " role="alert">
+  					{{ message }} <i class="fas fa-check-circle"></i></div>
+  					{% endif %}
+  					
+  				{% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+				<div  class="alert alert-dismissible fade show " role="alert">
+  					{{ message }} <i class="fas fa-exclamation-circle"></i></div>
+  					{% endif %}
+  					
+  					
+  					
+  					
+  					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    				<span aria-hidden="true"></span>
+  					</button>
+  				</div>
+		</div>
+				{% endfor %}
+				{% else %}
+				
+			<form  method="POST">
+			
+			
+				{% csrf_token %}
+				<div class="input-group" required >
+				<div class="textbox" style="text-align: center;" >
+				<p style="text-align: center;font-size:40px;width: 400px;">{% crispy form %}</p>
+			</br>
+				<span class="input-group-btn ">
+				
+					<button class="btn btn-light textbox" >Subscribe</button>
+				</span>
+				</div>
+			</form>
+			{% endif %}
+		</div>
+		
+		</div>
+		
+		</div>
+		
+	</div>
+</div>
+       
+       
+       
+       
+			
+          
+          
+        
+</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+ 
+
+
+
+</main>
+
+
+
+    
+
+
+
+
+<script src="/static/bootstrap/jquery.min.js"></script>
+<script src="/static/bootstrap/popper.min.js"></script>
+<script src="/static/bootstrap/bootstrap.js/bootstrap.min.js"></script>
+<script src="/static/glider/glider.min.js"></script>
+
+
+
+
+
+<script>
+  $(window).scroll(function() {
+    $('nav').toggleClass('scrolled', $(this).scrollTop() > 0);
+  })
+</script>
+	<script>
+	$(window).on('load', function(){
+		setTimeout(function(){
+			$('#exampleModal').modal('show')
+			
+		}, 40000); // 10000=10s		
+	});
+	</script>
+
+
+
+
+
+
+	  </body>
+	  
+</html>

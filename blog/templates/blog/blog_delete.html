@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<main class="p-5">
+<div class="row">
+	<div class=" col-sm-6 offset-sm-3">
+	<h2 id="clr"> Are you sure you want to delete the post?</h2>
+	<hr>
+	<form enctype="multipart/form-data" method="post">
+	{% csrf_token %}
+	{{form | crispy}}<br>
+	<input class="btn btn-dark my-3" type="submit"/>
+	</form>	
+	
+	</div>
+</div>
+</main>
+</body>
+</html>
+{% endblock %}
